@@ -354,17 +354,6 @@
 			</releases>
 		</pluginRepository>
 		<pluginRepository>
-			<id>Codehaus Snapshots3</id>
-			<url>http://repository.opencastproject.org/nexus/content/repositories/codehaus-snapshot-repo/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</pluginRepository>
-
-		<pluginRepository>
 			<id>nbiceng</id>
 			<url>http://ci.nbiceng.net/nexus/content/groups/public/</url>
 			<snapshots>
