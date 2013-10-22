@@ -169,6 +169,7 @@
 	<modules>
 		<module>Introduction</module>
 		<module>JEE6</module>
+		<module>IntegrationExercises</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
