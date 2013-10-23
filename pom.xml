@@ -170,6 +170,7 @@
 		<module>Introduction</module>
 		<module>JEE6</module>
 		<module>IntegrationExercises</module>
+		<module>Vaadin</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
