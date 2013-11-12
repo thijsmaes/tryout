@@ -13,7 +13,8 @@ public class OrderSearchCriteria implements Serializable {
 	private Boolean delivered;
 	private String productName;
 	private String orderId;
-
+	
+	
 	private String email;
 
 	public boolean hasPriceRange() {

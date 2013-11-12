@@ -19,7 +19,7 @@ public class OrderServiceImpl implements OrderService, Serializable {
 	private static final String FIXED_CUSTOMER = "john";
 	private static final long serialVersionUID = 1L;
 	private OrderSearchCriteria orderSearchCriteria = new OrderSearchCriteria();
-	// private Order order = new Order();
+
 	private final Map<String, List<Order>> map = new HashMap<>();
 	private List<Order> matchedOrders;
 
@@ -67,10 +67,23 @@ public class OrderServiceImpl implements OrderService, Serializable {
 		for (Order order : orders) {
 			boolean shouldAdd = false;
 
-			if (orderSearchCriteria.hasPriceRange()) {
-				if (orderSearchCriteria.isWithinRange(order
-						.getTotalOrderPrice())) {
-					shouldAdd = true;
+			for (Order o : orders) {
+				if (orderSearchCriteria.getOrderId() != null) {
+					if (orderSearchCriteria.getOrderId().equals(o.getOrderId())) {
+						if (orderSearchCriteria.isWithinRange(order
+								.getTotalOrderPrice())) {
+							shouldAdd = true;
+						}
+					}
+				}
+			}
+
+			if (!shouldAdd) {
+				if (orderSearchCriteria.hasPriceRange()) {
+					if (orderSearchCriteria.isWithinRange(order
+							.getTotalOrderPrice())) {
+						shouldAdd = true;
+					}
 				}
 			}
 
@@ -89,31 +102,23 @@ public class OrderServiceImpl implements OrderService, Serializable {
 				}
 			}
 
-			for (Order o : orders) {
-				if (orderSearchCriteria.getOrderId() != null) {
-					if (orderSearchCriteria.getOrderId().equals(o.getOrderId())) {
-						if (orderSearchCriteria.isWithinRange(order
-								.getTotalOrderPrice())) {
-							shouldAdd = true;
-						}
-					}
+			if (!shouldAdd) {
+				if (orderSearchCriteria.getDelivered()) {
+					shouldAdd = true;
 				}
 			}
 
-			if (orderSearchCriteria.getDelivered()) {
-				shouldAdd = true;
-			}
-
-			if (orderSearchCriteria.getNumberOfProducts() != null) {
-				shouldAdd = true;
-				break;
+			if (!shouldAdd) {
+				if (orderSearchCriteria.getNumberOfProducts() != null) {
+					shouldAdd = true;
+				}
 			}
 
 			// TODO add code for filtering orders based on the criteria
 			// 'numberOfProducts' and 'delivered'
 
 			if (shouldAdd) {
-				matchedOrders.add(order);				
+				matchedOrders.add(order);
 			}
 		}
 		return matchedOrders;
@@ -144,5 +149,15 @@ public class OrderServiceImpl implements OrderService, Serializable {
 		order = new Order(2L, "Order2", FIXED_CUSTOMER, false, 1, elitebook);
 		orders.add(order);
 		map.put(FIXED_CUSTOMER, orders);
+	}
+
+	public boolean isNumber(String input) {
+		int i = 0;
+		try {
+			i = Integer.parseInt(input);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }
