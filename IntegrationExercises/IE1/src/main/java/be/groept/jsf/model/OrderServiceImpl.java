@@ -7,14 +7,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 import org.apache.commons.lang.StringUtils;
 
+@SessionScoped
+@ManagedBean
 public class OrderServiceImpl implements OrderService, Serializable {
 
 	private static final String FIXED_CUSTOMER = "john";
 	private static final long serialVersionUID = 1L;
-
+	private OrderSearchCriteria orderSearchCriteria = new OrderSearchCriteria();
+	// private Order order = new Order();
 	private final Map<String, List<Order>> map = new HashMap<>();
+	private List<Order> matchedOrders;
+
+	public List<Order> getMatchedOrders() {
+		return matchedOrders;
+	}
 
 	public OrderServiceImpl() {
 		createTestData();
@@ -40,8 +51,17 @@ public class OrderServiceImpl implements OrderService, Serializable {
 		return productNames;
 	}
 
+	public void setOrderSearchCriteria() {
+		orderSearchCriteria = new OrderSearchCriteria();
+	}
+
+	public OrderSearchCriteria getOrderSearchCriteria() {
+		return orderSearchCriteria;
+	}
+
 	public List<Order> searchOrders(OrderSearchCriteria orderSearchCriteria) {
-		List<Order> matchedOrders = new ArrayList<Order>();
+		matchedOrders = new ArrayList<Order>();
+		matchedOrders.clear();
 		List<Order> orders = map.get(FIXED_CUSTOMER);
 
 		for (Order order : orders) {
@@ -65,19 +85,37 @@ public class OrderServiceImpl implements OrderService, Serializable {
 									orderSearchCriteria.getProductName()
 											.toLowerCase())) {
 						shouldAdd = true;
-						break;
 					}
 				}
+			}
+
+			for (Order o : orders) {
+				if (orderSearchCriteria.getOrderId() != null) {
+					if (orderSearchCriteria.getOrderId().equals(o.getOrderId())) {
+						if (orderSearchCriteria.isWithinRange(order
+								.getTotalOrderPrice())) {
+							shouldAdd = true;
+						}
+					}
+				}
+			}
+
+			if (orderSearchCriteria.getDelivered()) {
+				shouldAdd = true;
+			}
+
+			if (orderSearchCriteria.getNumberOfProducts() != null) {
+				shouldAdd = true;
+				break;
 			}
 
 			// TODO add code for filtering orders based on the criteria
 			// 'numberOfProducts' and 'delivered'
 
 			if (shouldAdd) {
-				matchedOrders.add(order);
+				matchedOrders.add(order);				
 			}
 		}
-
 		return matchedOrders;
 	}
 

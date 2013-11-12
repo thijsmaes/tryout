@@ -12,6 +12,7 @@ public class OrderSearchCriteria implements Serializable {
 	private Integer numberOfProducts;
 	private Boolean delivered;
 	private String productName;
+	private String orderId;
 
 	private String email;
 
@@ -77,5 +78,13 @@ public class OrderSearchCriteria implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getOrderId() {
+		return orderId;
 	}
 }

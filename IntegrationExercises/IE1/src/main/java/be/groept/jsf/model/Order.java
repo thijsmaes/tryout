@@ -19,6 +19,7 @@ public class Order implements Serializable {
 	private boolean delivered;
 	private final int deliveryDays;
 	private BigDecimal totalOrderPrice;
+	private int nrOfProducts;
 
 	public Order(Long id, String orderId, String customerId, boolean delivered,
 			int deliveryDays, Product... products) {
@@ -28,7 +29,7 @@ public class Order implements Serializable {
 		this.delivered = delivered;
 		this.deliveryDays = deliveryDays;
 		this.products = Arrays.asList(products);
-
+		setNrOfProducts(products.length);
 		calculateTotalOrderPrice();
 	}
 
@@ -43,6 +44,14 @@ public class Order implements Serializable {
 		this.totalOrderPrice = temp;
 	}
 
+	public int getNrOfProducts() {
+		return nrOfProducts;
+	}
+
+	public void setNrOfProducts(int nrOfProducts) {
+		this.nrOfProducts = nrOfProducts;
+	}
+	
 	public Long getId() {
 		return id;
 	}
