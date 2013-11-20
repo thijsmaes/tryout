@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<class name="be.groept.hibernate.entities.relations.ParentOto" table="parentOto" >
+
+		<id name="id" type="long" column="id" access="property">
+			<generator class="native"/>
+		</id>
+
+		<property name="parentName"/>
+		
+		<many-to-one name="child" class="be.groept.hibernate.entities.relations.ChildOto" column="child_id" unique="true" cascade="save-update"/>
+		
+	</class>
+</hibernate-mapping>

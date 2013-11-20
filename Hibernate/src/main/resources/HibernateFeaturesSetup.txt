@@ -1,0 +1,33 @@
+Add this import in applicationContext.xml (order is of no importance):
+
+	<import resource="applicationContext-cache.xml"/>
+
+Add these extra mapping values in applicationContext-hibernate:
+
+				<value>classpath:mappings/typedefs.hbm.xml</value>
+
+				<value>classpath:mappings/relations/ChildOtm.hbm.xml</value>
+				<value>classpath:mappings/relations/ParentOtm.hbm.xml</value>
+
+				<value>classpath:mappings/relations/ChildOto.hbm.xml</value>
+				<value>classpath:mappings/relations/ParentOto.hbm.xml</value>
+
+				<value>classpath:mappings/relations/ChildMtm.hbm.xml</value>
+				<value>classpath:mappings/relations/ParentMtm.hbm.xml</value>
+				
+				<value>classpath:mappings/inheritance/Address.hbm.xml</value>
+				<value>classpath:mappings/inheritance/BillingAddress.hbm.xml</value>
+				<value>classpath:mappings/inheritance/ContactAddress.hbm.xml</value>
+				<value>classpath:mappings/inheritance/DeliveryAddress.hbm.xml</value>
+				
+				<value>classpath:mappings/filters/Category.hbm.xml</value>
+				<value>classpath:mappings/filters/Item.hbm.xml</value>
+				
+				<value>classpath:mappings/caching/Description.hbm.xml</value>
+				<value>classpath:mappings/caching/DescriptionTranslation.hbm.xml</value>
+				<value>classpath:mappings/caching/Item.hbm.xml</value>				
+				
+				<value>classpath:mappings/concurency/Organization.hbm.xml</value>
+				<value>classpath:mappings/concurency/Employee.hbm.xml</value>
+				
+				<value>classpath:mappings/type/User.hbm.xml</value>
