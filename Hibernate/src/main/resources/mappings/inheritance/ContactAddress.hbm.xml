@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<subclass extends="AddressTps"
+					 name="be.groept.hibernate.entities.inheritance.ContactAddress" discriminator-value="C">
+			
+		<join table="es_contact_address">			 
+			<key column="address_id"/>
+		
+			<property name="email"/>
+			<property name="telephoneNumber" column="telephone_number"/>
+			<property name="faxNumber" column="fax_number"/>
+		</join>
+	</subclass>
+</hibernate-mapping>

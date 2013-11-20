@@ -171,6 +171,7 @@
 		<module>JEE6</module>
 		<module>IntegrationExercises</module>
 		<module>Vaadin</module>
+		<module>Hibernate</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<subclass extends="AddressTps" 
+					 name="be.groept.hibernate.entities.inheritance.DeliveryAddress" discriminator-value="D">
+		
+		<join table="es_delivery_address">
+			<key column="address_id"/>
+			<property name="allowNeighbourDelivery" column="nb_delivery"/>
+		</join>
+	</subclass>
+</hibernate-mapping>

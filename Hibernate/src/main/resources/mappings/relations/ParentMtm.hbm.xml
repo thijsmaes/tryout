@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<class name="be.groept.hibernate.entities.relations.ParentMtm" table="parentMtm" >
+
+		<id name="id" type="long" column="id" access="property">
+			<generator class="native"/>
+		</id>
+
+		<property name="parentName"/>
+		
+		<bag name="childDetails" table="parent_child" cascade="all,delete-orphan">
+				<key column="parent_id"/>
+				<composite-element class="be.groept.hibernate.entities.relations.ChildMtmDetail">
+				<parent name="parentMtm"/>
+				<many-to-one name="childMtm" column="child_id" not-null="true" class="be.groept.hibernate.entities.relations.ChildMtm" cascade="all"/>
+				<property name="amount" column="amount"/>
+			</composite-element>
+		</bag>
+	</class>
+</hibernate-mapping>
