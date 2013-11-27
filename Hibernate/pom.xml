@@ -3,12 +3,50 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>be.groept</groupId>
 	<artifactId>Hibernate</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<parent>
 		<groupId>be.groept</groupId>
 		<artifactId>java-projects</artifactId>
 		<version>0.1</version>
 	</parent>
+
+<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<configuration>
+						<additionalProjectnatures>
+							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+						</additionalProjectnatures>
+						<additionalProjectFacets>
+							<jst.web>3.0</jst.web>
+						</additionalProjectFacets>
+						<additionalBuildcommands>
+							<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+						</additionalBuildcommands>
+						<additionalConfig>
+							<file>
+								<name>.settings/org.eclipse.wst.common.project.facet.core.xml</name>
+								<content>
+                               						<![CDATA[
+										<?xml version="1.0" encoding="UTF-8"?>
+											<faceted-project>
+												<runtime name="GlassFish 4.0"/>	
+												<fixed facet="wst.jsdt.web"/>
+												<installed facet="java" version="1.7"/>
+												<installed facet="jst.web" version="3.0"/>
+												<installed facet="wst.jsdt.web" version="1.0"/>
+											</faceted-project>
+									]]>
+								</content>
+							</file>
+						</additionalConfig>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -35,6 +73,12 @@
 			<artifactId>spring-tx</artifactId>
 			<version>3.2.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
@@ -120,6 +164,44 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.3.174</version>
+		</dependency>
+	<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency> 
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-server</artifactId>
+			<version>7.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client-compiled</artifactId>
+			<version>7.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-shared</artifactId>
+			<version>7.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-themes</artifactId>
+			<version>7.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-theme-compiler</artifactId>
+			<version>7.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>1.0.0.Final</version>
+			<type>pom</type>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
