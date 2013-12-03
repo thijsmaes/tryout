@@ -2,6 +2,8 @@ package be.groept.hibernate.exercise1.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,14 @@ import be.groept.hibernate.exercise1.entities.Person;
 @Transactional
 @Repository
 public class PersonDaoImpl extends HibernateTemplate implements PersonDao {
+
+	private final SessionFactory sessionFactory;
+
+	@Autowired
+	public PersonDaoImpl(SessionFactory sessionFactory) {
+		super(sessionFactory);
+		this.sessionFactory = sessionFactory;
+	}
 
 	public List<Person> findAll() {
 		// TODO make me work
@@ -33,7 +43,8 @@ public class PersonDaoImpl extends HibernateTemplate implements PersonDao {
 		// TODO make me work
 	}
 
-	public List<Person> findByAddress(AddressSearchCriteria addressSearchCriteria) {
+	public List<Person> findByAddress(
+			AddressSearchCriteria addressSearchCriteria) {
 		// TODO make me work
 		return null;
 	}
