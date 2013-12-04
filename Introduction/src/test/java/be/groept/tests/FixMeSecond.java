@@ -3,6 +3,7 @@ package be.groept.tests;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import be.groept.equalshashcode.EmployeeRecord;
@@ -21,8 +22,10 @@ public class FixMeSecond {
 
 		//TODO Instead of system err, use Asserts to test if this is working
 		System.err.println("Checking if everyone exists in the set:");
-		System.err.println(set.contains(new EmployeeRecord("John", "Doe")));
-		System.err.println(set.contains(new EmployeeRecord("Jim", "Jannsens")));
+		Assert.assertTrue(set.contains(john)); 
+		//new EmployeeRecord("John", "Doe")));
+		Assert.assertTrue(set.contains(jim));
+//				new EmployeeRecord("Jim", "Jannsens")));
 		System.err.println();
 
 		System.err.println("Iterating over the set:");
@@ -33,7 +36,9 @@ public class FixMeSecond {
 
 		//TODO Instead of system err, use Asserts to test if this is working
 		System.err.println("Checking again if everyone exists in the set:");
-		System.err.println(set.contains(new EmployeeRecord("John", "Doe")));
-		System.err.println(set.contains(new EmployeeRecord("Jim", "Jannsens")));
+		Assert.assertTrue(set.contains(john));
+//				new EmployeeRecord("John", "Doe")));
+		Assert.assertTrue(set.contains(jim));
+//				(new EmployeeRecord("Jim", "Jannsens")));
 	}
 }

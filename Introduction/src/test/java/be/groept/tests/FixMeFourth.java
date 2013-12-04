@@ -2,9 +2,11 @@ package be.groept.tests;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import org.testng.annotations.Test;
 
 import be.groept.generics.Base1;
 
+@Test
 public class FixMeFourth {
 
 	public void testGenerics() {

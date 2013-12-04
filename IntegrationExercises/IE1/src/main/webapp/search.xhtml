@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:outputLabel
+			rendered="#{not empty orderServiceImpl.orderSearchCriteria}">Search results</h:outputLabel>
+		<h:outputLabel
+			rendered="#{empty orderServiceImpl.orderSearchCriteria}">Submit search criteria</h:outputLabel>
+		<h:form id="searchForm">
+			<!-- <h:commandButton value="Home" action="home" /> -->
+
+			<br />
+
+
+
+			<h:panelGrid id="panel" columns="4" border="1" cellpadding="10"
+				cellspacing="1">
+				<f:facet name="header">
+					<h:outputText value="Search criteria" />
+				</f:facet>
+				<h:outputLabel value="Minimum amount" />
+				<h:inputText id="minAmount"
+					value="#{orderServiceImpl.orderSearchCriteria.minAmount}">
+					<f:ajax event="keyup" render="minAmount"
+						listener="#{orderServiceImpl.isNumber()}" />
+				</h:inputText>
+				<h:outputLabel value="Maximum amount" />
+				<h:inputText id="maxAmount"
+					value="#{orderServiceImpl.orderSearchCriteria.maxAmount}">
+					<f:ajax event="keyup" render="maxAmount"
+						listener="#{orderServiceImpl.isNumber()}" />
+				</h:inputText>
+				<h:outputLabel value="Number of products" />
+				<h:inputText
+					value="#{orderServiceImpl.orderSearchCriteria.numberOfProducts}" />
+				<h:outputLabel value="Delivered" />
+				<h:selectBooleanCheckbox
+					value="#{orderServiceImpl.orderSearchCriteria.delivered}" />
+
+				<h:outputLabel value="Product name" />
+				<h:inputText
+					value="#{orderServiceImpl.orderSearchCriteria.productName}" />
+				<h:outputLabel value="Email address" />
+				<h:inputText value="#{orderServiceImpl.orderSearchCriteria.email}" />
+				<f:facet name="footer">
+					<h:panelGroup style="display:block; text-align:center">
+						<h:commandButton value="Search"
+							actionListener="#{orderServiceImpl.searchOrders(orderServiceImpl.orderSearchCriteria)}" />
+						<h:commandButton value="reset"
+							actionListener="#{orderServiceImpl.setOrderSearchCriteria}" />
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+		</h:form>
+		<br />
+		<h:outputLabel
+			rendered="#{not empty orderServiceImpl.orderSearchCriteria}">Orders found</h:outputLabel>
+
+		<h:form>
+			<h:dataTable id="resultsTable"
+				value="#{orderServiceImpl.matchedOrders}" var="o"
+				styleClass="order-table" headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+
+				<h:column>
+					<!-- column header -->
+					<f:facet name="header">OrderID</f:facet>
+					<!-- row record -->
+    				#{o.orderId}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">CustomerID</f:facet>
+    				#{o.customerId}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">#producten</f:facet>
+    				#{o.nrOfProducts}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">Delivered?</f:facet>
+					<h:outputLabel rendered="#{o.delivered}">yes</h:outputLabel>
+					<h:outputLabel rendered="#{not o.delivered}">no</h:outputLabel>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">DeliveryDays</f:facet>
+    				#{o.deliveryDays}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">Total price</f:facet>
+    				#{o.totalOrderPrice}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">Detail?</f:facet>
+					<h:commandButton outcome="order" value="X">
+						<f:actionListener
+							binding="#{orderServiceImpl.setOrderSearchCriteria()}" />
+						<ui:param name="orderId" value="#{o.orderId}" />
+						<f:actionListener
+							binding="#{orderServiceImpl.orderSearchCriteria.orderId}" />
+						<f:actionListener
+							binding="#{orderServiceImpl.searchOrders(orderServiceImpl.orderSearchCriteria)}" />
+
+						<f:param name="orderId" value="#{o.orderId}" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<h:outputLabel>Details for #{param["orderId"]}</h:outputLabel>
+
+		<h:panelGrid value="#{orderServiceImpl.matchedOrders}" var="o"
+			id="panel" columns="2" border="1" cellpadding="10" cellspacing="1">
+			<h:outputLabel>OrderId: #{orderServiceImpl.orderSearchCriteria.orderId}</h:outputLabel>
+			<h:outputLabel>CustomerId: #{o.customerId}</h:outputLabel>
+			<h:outputLabel>#products: #{o.nrOfProducts}</h:outputLabel>
+			<h:outputLabel>Delivered: #{o.delivered}</h:outputLabel>
+			<h:outputLabel>DeliveryDays: #{o.deliveryDays}</h:outputLabel>
+			<h:outputLabel>Total Price: #{o.totalOrderPrice}</h:outputLabel>
+
+		</h:panelGrid>
+
+		<br />
+		<br />
+		<h:outputLabel style="text-decoration:underline">Products detail</h:outputLabel>
+
+		<h:dataTable id="Productstable"
+			value="#{orderServiceImpl.matchedOrders.products}" var="p">
+
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">ProductId</f:facet>
+				<!-- row record -->
+    				#{p.productId}
+    			</h:column>
+
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">Name</f:facet>
+				<!-- row record -->
+    				#{p.productName}
+    			</h:column>
+
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">Description</f:facet>
+				<!-- row record -->
+    				#{p.productDescription}
+    			</h:column>
+
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">Price</f:facet>
+				<!-- row record -->
+    				#{p.productPrice}
+    			</h:column>
+		</h:dataTable>
+		<h:button value="Home" outcome="home" />
+	</ui:define>
+
+</ui:composition>

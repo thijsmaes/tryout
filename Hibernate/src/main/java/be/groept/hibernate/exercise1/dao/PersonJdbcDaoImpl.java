@@ -1,7 +1,9 @@
 package be.groept.hibernate.exercise1.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -38,16 +40,28 @@ public class PersonJdbcDaoImpl extends JdbcTemplate implements PersonDao {
 	}
 
 	public List<Person> findByName(String name) {
-		// TODO implement me
-		return null;
+		
+		List people = query("select * from person where name= "+name, new Object[] {}, new RowMapper<Person>() {
+
+			public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Person person = new Person();
+				person.setName(rs.getString("name"));
+				return person;
+			}
+		});
+		return people;
 	}
 
 	public void removePerson(Person person) {
+		super.update("delete from person where id = " + person.getId());
 		// TODO implement me
 		// hint: super.update(".....
 	}
 
 	public void savePerson(Person person) {
+		super.update("insert into person (name, firstname, box, country, housenumber, municipality, postalcode, street) values ("+person.getName()+ "," +person.getFirstName()+","+person.getAddresses().get(0).getBox()+", "
+				+ person.getAddresses().get(0).getCountry()+", "+person.getAddresses().get(0).getHouseNumber()+", "+person.getAddresses().get(0).getMunicipality()+", "+person.getAddresses().get(0).getPostalCode()+", "+person.getAddresses().get(0).getStreet()+")");
+//	name, firstname, box, country, housenumber, municipality, postalcode, street
 		// TODO implement me
 		// hint: super.update(".....
 	}
@@ -56,6 +70,9 @@ public class PersonJdbcDaoImpl extends JdbcTemplate implements PersonDao {
 		// TODO implement me
 		// Finally, use : super.query(query.toString(), parameters.toArray(new
 		// String[] {}), new RowMapper<Person>() { ....
-		return null;
+		List<Person> people = new ArrayList<Person>();
+		
+		
+		return people;
 	}
 }
