@@ -2,12 +2,21 @@ package be.groept.hibernate.exercise1.entities;
 
 public class Address {
 
+	private Long id;
 	private String street;
 	private String municipality;
 	private String postalCode;
 	private String country;
 	private String houseNumber;
 	private String box;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getStreet() {
 		return street;

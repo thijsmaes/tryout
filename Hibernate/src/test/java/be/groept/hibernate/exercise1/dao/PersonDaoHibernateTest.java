@@ -2,6 +2,9 @@ package be.groept.hibernate.exercise1.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
@@ -13,10 +16,13 @@ import be.groept.hibernate.exercise1.entities.Person;
 
 @Test
 @ContextConfiguration(locations = { "/applicationContext.xml" })
+@ActiveProfiles("hibernate")
 public class PersonDaoHibernateTest extends
 		AbstractTransactionalTestNGSpringContextTests {
 
-	// TODO wire the dao
+	@Autowired
+	private SessionFactory sessionFactory;
+	@Autowired
 	private PersonDao personDao;
 
 	private Person johnDoe, steveWilson;
@@ -29,6 +35,7 @@ public class PersonDaoHibernateTest extends
 	}
 
 	public void testFindByAddressCriteria() {
+		// sessionFactory.getCurrentSession().flush();
 		AddressSearchCriteria addressSearchCriteria = new AddressSearchCriteria();
 		addressSearchCriteria.setCountry("belgium");
 		addressSearchCriteria.setMunicipality("antwerp");
@@ -36,6 +43,7 @@ public class PersonDaoHibernateTest extends
 		Assert.assertEquals(persons.size(), 1);
 		Assert.assertEquals(persons.iterator().next().getFirstName(), "Steve");
 		Assert.assertEquals(persons.iterator().next().getName(), "Wilson");
+		Assert.assertEquals(persons.iterator().next().getAddresses().size(), 1);
 
 		addressSearchCriteria = new AddressSearchCriteria();
 		addressSearchCriteria.setCountry("belgium");
@@ -44,6 +52,7 @@ public class PersonDaoHibernateTest extends
 		Assert.assertEquals(persons.size(), 1);
 		Assert.assertEquals(persons.iterator().next().getFirstName(), "John");
 		Assert.assertEquals(persons.iterator().next().getName(), "Doe");
+		Assert.assertEquals(persons.iterator().next().getAddresses().size(), 1);
 
 		addressSearchCriteria = new AddressSearchCriteria();
 		addressSearchCriteria.setCountry("belgium");
@@ -59,11 +68,33 @@ public class PersonDaoHibernateTest extends
 	}
 
 	@BeforeMethod
-	@SuppressWarnings("unused")
 	private void dataSetup() {
 
-		// Maybe you can use the build pattern to easily create Person entities?
-		// I already made one for you 'PersonBuilder....' see PersonDaoJdbcTest
-		// on howto use
+		johnDoe = new PersonBuilder() {
+			{
+				firstName("John").name("Doe");
+				{
+					addAddress();
+					country("belgium").municipality("brussels").postalCode(
+							"1000");
+					street("nieuwstraat").houseNumber("1").box("A");
+				}
+			}
+		}.retrieve();
+
+		steveWilson = new PersonBuilder() {
+			{
+				firstName("Steve").name("Wilson");
+				{
+					addAddress();
+					country("belgium").municipality("antwerp").postalCode(
+							"2000");
+					street("meir").houseNumber("10");
+				}
+			}
+		}.retrieve();
+
+		personDao.savePerson(johnDoe);
+		personDao.savePerson(steveWilson);
 	}
 }
