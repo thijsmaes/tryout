@@ -1,12 +1,17 @@
 package be.groept.ie3.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import be.groept.ie3.entities.Eshop;
 import be.groept.ie3.screens.LoginScreen;
+import be.groept.ie3.service.ShopService;
 
+@Controller
 public class EshopApplicationController {
 
-	// @Autowired
-	// private ShopService shopService;
+	@Autowired
+	private ShopService shopService;
 
 	public void run() {
 		String[] usernamePassword = getUsernamePassword();
@@ -30,7 +35,7 @@ public class EshopApplicationController {
 
 	private Eshop getEshop() {
 		// ....
-		return null;
+		return shopService.listEshops().iterator().next();
 	}
 
 	private String showMainScreen() {

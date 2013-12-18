@@ -5,6 +5,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import be.groept.ie3.entities.Eshop;
+
 public class InitialDataSetup {
 
 	private TransactionTemplate transactionTemplate;
@@ -23,7 +25,9 @@ public class InitialDataSetup {
 
 				// Setup test data
 				{
-
+					Eshop eshop = new Eshop();
+					eshop.setName("mijn eshop");
+					sessionFactory.getCurrentSession().save(eshop);
 				}
 			}
 		});

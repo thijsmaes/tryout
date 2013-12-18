@@ -29,7 +29,7 @@
 		<property name="packagesToScan" value="be.groept.hibernate.exercise1.entities"/>
 		<property name="mappingLocations">
 			<list>
-					<value>classpath:mappings/DemoMapping.hbm.xml</value>
+					<value>classpath:mappings/Eshop.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
