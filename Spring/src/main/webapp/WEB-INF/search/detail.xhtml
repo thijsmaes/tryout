@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<ui:composition template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="bodyContent">
+		<h:form>
+		
+			<h:panelGrid id="panel" columns="4" style="margin-bottom:10px">
+	
+				<h:outputLabel value="Order id" /> 
+				<h:outputText value="#{detailBackingAction.order.orderId}"/>
+
+				<h:outputLabel value="Customer id" /> 
+				<h:outputText value="#{detailBackingAction.order.customerId}"/>
+
+				<h:outputLabel value="# of products" />
+				<h:outputText value="#{fn:length(detailBackingAction.order.products)}"/>
+
+				<h:outputLabel value="Delivered" />
+				<h:outputText value="#{detailBackingAction.order.delivered}"/>
+
+				<h:outputLabel value="Delivery days" />
+				<h:outputText value="#{detailBackingAction.order.deliveryDays}"/>
+
+				<h:outputLabel value="Total price" />
+				<h:outputText value="#{detailBackingAction.order.totalOrderPrice}"/>
+			
+			</h:panelGrid>
+			
+			<p:dataTable var="product" value="#{detailBackingAction.order.products}">
+
+				<p:column headerText = "Product id">
+					<h:outputText value="#{product.productId}" />
+				</p:column>
+				
+				<p:column headerText = "Product name">
+					<h:outputText value="#{product.productName}" />
+				</p:column>
+				
+				<p:column headerText = "Product description">
+					<h:outputText value="#{product.productDescription}" />
+				</p:column>
+				
+				<p:column headerText = "Product price">
+					<h:outputText value="#{product.productPrice}" />
+				</p:column>
+				
+			</p:dataTable>
+			
+			<h:commandButton value="Back"  action="back" /> 
+  
+		</h:form>
+	</ui:define>
+</ui:composition> </html>

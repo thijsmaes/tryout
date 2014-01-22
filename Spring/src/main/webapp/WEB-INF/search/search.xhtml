@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	>
+	<ui:composition template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="bodyContent">
+		<h:form id="form">
+			<h:panelGrid id="panel" columns="4" style="margin-bottom:10px">
+		
+				<h:outputLabel value="Productname" />
+				<h:inputText value="#{searchCriteria.productName}"/>
+			
+				<h:outputLabel value="Minimum amount" /> 
+				<h:inputText value="#{searchCriteria.minAmount}">
+					<f:ajax event="change" execute="@this" render=":messages" />
+				</h:inputText>
+
+				<h:outputLabel value="Maximum amount" />
+				<h:inputText  value="#{searchCriteria.maxAmount}">
+					<f:ajax event="change" execute="@this" render=":messages" />
+				</h:inputText>
+
+				<h:outputLabel value="# products"/>
+				<h:inputText value="#{searchCriteria.numberOfProducts}">
+					<f:ajax event="change" execute="@this" render=":messages" />
+				</h:inputText>
+
+				<h:outputLabel value="Delivered" />
+				<h:selectBooleanCheckbox  value="#{searchCriteria.delivered}"/>
+
+				<h:outputLabel value="Emailaddress" />
+				<h:inputText id="searchEmailAdres" value="#{searchCriteria.emailAddress.email}">
+					<f:ajax event="change" execute="@this" render=":messages" />
+				</h:inputText>
+			</h:panelGrid>
+
+			<h:commandButton value="Clear" action="#{searchBackingAction.clear(searchCriteria)}">
+				<f:ajax event="action" render="@form :messages" execute="@this"/>
+			</h:commandButton>
+		
+			<h:commandButton value="Search"  action="search" /> 
+			<br/>
+			
+			<p:dataTable id="table" var="order" value="#{searchBackingAction.searchResults}">
+				<p:column headerText="Id">
+					<h:outputText value="#{order.id}" />
+				</p:column>
+				
+				<p:column headerText="Order id">
+					<h:outputText value="#{order.orderId}" />
+				</p:column>
+				
+				<p:column headerText="Customer id">
+					<h:outputText value="#{order.customerId}" />
+				</p:column>
+				
+				<p:column headerText="# products">
+					<h:outputText value="#{fn:length(order.products)}" />
+				</p:column>
+				
+				<p:column headerText="Delivered">
+					<h:outputText value="#{order.delivered}" />
+				</p:column>
+				
+				<p:column headerText="Delivery days">
+					<h:outputText value="#{order.deliveryDays}" />
+				</p:column>
+				
+				<p:column headerText="Total orderprice">
+					<h:outputText value="#{order.totalOrderPrice}" />
+				</p:column>
+				
+				<p:column>
+					<h:commandButton action="detail" value="Detail">
+						<f:setPropertyActionListener target="#{detailBackingAction.order}" value="#{order}" />
+					</h:commandButton> 
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition> </html>

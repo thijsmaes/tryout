@@ -172,6 +172,7 @@
 		<module>IntegrationExercises</module>
 		<module>Vaadin</module>
 		<module>Hibernate</module>
+		<module>Spring</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
