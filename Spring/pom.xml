@@ -3,66 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>be.groept</groupId>
 	<artifactId>Spring</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<parent>
 		<groupId>be.groept</groupId>
 		<artifactId>java-projects</artifactId>
 		<version>0.1</version>
 	</parent>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<configuration>
-						<additionalProjectnatures>
-							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-						</additionalProjectnatures>
-						<additionalProjectFacets>
-							<jst.web>2.5</jst.web>
-							<jst.jsf>2.0</jst.jsf>
-						</additionalProjectFacets>
-						<additionalBuildcommands>
-							<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-						</additionalBuildcommands>
-						<additionalConfig>
-							<file>
-								<name>.settings/org.eclipse.wst.common.project.facet.core.xml</name>
-								<content>
-                               						<![CDATA[
-										<?xml version="1.0" encoding="UTF-8"?>
-											<faceted-project>
-												<runtime name="GlassFish 4.0"/>	
-												<fixed facet="wst.jsdt.web"/>
-												<installed facet="java" version="1.7"/>
-												<installed facet="jst.web" version="3.0"/>
-												<installed facet="jst.jsf" version="2.1"/>
-												<installed facet="wst.jsdt.web" version="1.0"/>
-											</faceted-project>
-									]]>
-								</content>
-							</file>
-							<file>
-								<name>.settings/org.eclipse.wst.common.project.facet.core.prefs.xml</name>
-								<content>
-                               						<![CDATA[
-										<root>
-											<facet id="jst.jsf">
-												<node name="libprov">
-													<attribute name="provider-id" value="jsf-no-op-library-provider"/>
-												</node>
-											</facet>
-										</root>
-									]]>
-								</content>
-							</file>
-						</additionalConfig>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 
 	<dependencies>
 		<dependency>
@@ -120,6 +66,11 @@
 			<artifactId>spring-web</artifactId>
 			<version>3.2.6.RELEASE</version>
 		</dependency>
+		<dependency> 
+			<groupId>org.springframework</groupId> 
+		     	<artifactId>spring-aspects</artifactId> 
+		     	<version>3.2.6.RELEASE</version> 
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -175,28 +126,6 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>1.9.0</version>
-		</dependency>
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
-			<scope>provided</scope>
-		</dependency>  
-		<dependency>  
-			<groupId>org.primefaces</groupId>  
-			<artifactId>primefaces</artifactId>  
-			<version>3.5</version>  
-		</dependency> 
-		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>javax.faces-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

@@ -14,8 +14,8 @@ public class StringAspect {
 
 	@Around(value = "containsWhitespace()")
 	public Object logger(ProceedingJoinPoint pjp) throws Throwable {
-		//return pjp.getArgs()[0];
-		return pjp.proceed();
+		return pjp.getArgs()[0];
+		// return pjp.proceed();
 	}
 
 	public int getOrder() {
