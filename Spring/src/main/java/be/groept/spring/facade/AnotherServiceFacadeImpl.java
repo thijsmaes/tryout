@@ -1,16 +1,16 @@
 package be.groept.spring.facade;
 
-import be.groept.spring.repository.ServiceRepository;
+import be.groept.spring.repository.OrderRepository;
 
 public class AnotherServiceFacadeImpl implements AnotherServiceFacade {
 
-	private ServiceRepository serviceRepository;
+	private OrderRepository orderRepository;
 
-	public ServiceRepository getServiceRepository() {
-		return serviceRepository;
+	public OrderRepository getOrderRepository() {
+		return orderRepository;
 	}
 
-	public void setServiceRepository(ServiceRepository serviceRepository) {
-		this.serviceRepository = serviceRepository;
+	public void setOrderRepository(OrderRepository orderRepository) {
+		this.orderRepository = orderRepository;
 	}
 }
