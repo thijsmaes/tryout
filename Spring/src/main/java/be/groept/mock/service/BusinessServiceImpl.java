@@ -21,7 +21,7 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public void processSomething() throws ReceptionNotOkException {
 		ProcessResult processResult = new ProcessResult(new SimpleDateFormat("yyyy-mm-dd").format(new Date()));
-		WebserviceResult webserviceResult = webserviceClient.sendResult(processResult);
+		WebserviceResult webserviceResult = webserviceClient.sendResult(processResult, new Date());
 		webserviceResult.checkReceptionOk();
 	}
 

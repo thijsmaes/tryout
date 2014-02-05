@@ -1,13 +1,14 @@
 package be.groept.mock.dao;
 
 import java.net.SocketTimeoutException;
+import java.util.Date;
 
 import be.groept.mock.service.ProcessResult;
 
 public class WebserviceClientImpl implements WebserviceClient {
 
 	@Override
-	public WebserviceResult sendResult(ProcessResult processResult) {
+	public WebserviceResult sendResult(ProcessResult processResult, Date date) {
 		// Normally the code placed here would call a real webservice. For the
 		// understanding of mocking the rational is that we are not able to test
 		// this class as the target webservice is not available in the scope of

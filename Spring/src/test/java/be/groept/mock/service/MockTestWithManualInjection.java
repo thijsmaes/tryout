@@ -1,9 +1,10 @@
 package be.groept.mock.service;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,19 +25,19 @@ public class MockTestWithManualInjection {
 	public void testHappyFlow() throws ReceptionNotOkException {
 
 		WebserviceClient webserviceClient = mock(WebserviceClient.class);
-		when(webserviceClient.sendResult(any(ProcessResult.class))).thenReturn(
+		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.OK));
 
 		BusinessServiceImpl businessService = new BusinessServiceImpl();
 		businessService.setWebserviceClient(webserviceClient);
 		businessService.processSomething();
 
-		verify(webserviceClient).sendResult(any(ProcessResult.class));
+		verify(webserviceClient).sendResult(any(ProcessResult.class), any(Date.class));
 	}
 
 	public void testBusinessLogicOkCase() throws ReceptionNotOkException {
 		WebserviceClient webserviceClient = Mockito.mock(WebserviceClient.class);
-		when(webserviceClient.sendResult(any(ProcessResult.class))).thenReturn(
+		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.OK));
 
 		BusinessServiceImpl businessService = new BusinessServiceImpl();
@@ -47,13 +48,13 @@ public class MockTestWithManualInjection {
 
 		Mockito.
 
-		verify(webserviceClient).sendResult(processResult);
+		verify(webserviceClient).sendResult(eq(processResult), any(Date.class));
 	}
 
 	@Test(expectedExceptions = ReceptionNotOkException.class)
 	public void testBusinessLogicFailureCase() throws ReceptionNotOkException {
 		WebserviceClient webserviceClient = Mockito.mock(WebserviceClient.class);
-		when(webserviceClient.sendResult(any(ProcessResult.class))).thenReturn(
+		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.ERROR));
 
 		BusinessServiceImpl businessService = new BusinessServiceImpl();

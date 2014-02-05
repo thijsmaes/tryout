@@ -3,6 +3,7 @@ package be.groept.mock.service;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.eq;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,27 +40,27 @@ public class MockTestSpringInjection extends AbstractTestNGSpringContextTests {
 	}
 
 	public void testHappyFlow() throws ReceptionNotOkException {
-		when(webserviceClient.sendResult(any(ProcessResult.class))).thenReturn(
+		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.OK));
 
 		businessService.processSomething();
 
-		verify(webserviceClient).sendResult(any(ProcessResult.class));
+		verify(webserviceClient).sendResult(any(ProcessResult.class), any(Date.class));
 	}
 
 	public void testBusinessLogicOkCase() throws ReceptionNotOkException {
-		when(webserviceClient.sendResult(any(ProcessResult.class))).thenReturn(
+		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.OK));
 
 		businessService.processSomething();
 
 		ProcessResult processResult = new ProcessResult(new SimpleDateFormat("yyyy-mm-dd").format(new Date()));
-		verify(webserviceClient).sendResult(processResult);
+		verify(webserviceClient).sendResult(eq(processResult), any(Date.class));
 	}
 
 	@Test(expectedExceptions = ReceptionNotOkException.class)
 	public void testBusinessLogicFailureCase() throws ReceptionNotOkException {
-		when(webserviceClient.sendResult(any(ProcessResult.class))).thenReturn(
+		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.ERROR));
 
 		businessService.processSomething();
