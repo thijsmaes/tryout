@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeMethod;
@@ -24,6 +25,7 @@ import be.groept.mock.service.MockTestSpringInjection.MockTestSpringInjectionCon
 
 @Test
 @ContextConfiguration(classes = { MockTestSpringInjectionConfiguration.class })
+@ActiveProfiles("mocking")
 public class MockTestSpringInjection extends AbstractTestNGSpringContextTests {
 
 	@Autowired

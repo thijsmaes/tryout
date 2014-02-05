@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.mockito.Mockito;
+import org.springframework.test.context.ActiveProfiles;
 import org.testng.annotations.Test;
 
 import be.groept.mock.dao.ReceptionNotOkException;
@@ -17,6 +18,7 @@ import be.groept.mock.dao.WebserviceResult;
 import be.groept.mock.dao.WebserviceResult.WebserviceResultStatus;
 
 @Test
+@ActiveProfiles("mocking")
 public class MockTestWithManualInjection {
 
 	public void testHappyFlow() throws ReceptionNotOkException {
@@ -26,7 +28,7 @@ public class MockTestWithManualInjection {
 				new WebserviceResult(WebserviceResultStatus.OK));
 
 		BusinessServiceImpl businessService = new BusinessServiceImpl();
-		businessService.setWebserviceClient(webserviceClient);	
+		businessService.setWebserviceClient(webserviceClient);
 		businessService.processSomething();
 
 		verify(webserviceClient).sendResult(any(ProcessResult.class));
@@ -42,9 +44,9 @@ public class MockTestWithManualInjection {
 		businessService.processSomething();
 
 		ProcessResult processResult = new ProcessResult(new SimpleDateFormat("yyyy-mm-dd").format(new Date()));
-		
+
 		Mockito.
-		
+
 		verify(webserviceClient).sendResult(processResult);
 	}
 
