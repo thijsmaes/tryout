@@ -1,10 +1,13 @@
 package be.groept.ie3.entities;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +22,16 @@ public class Product {
 	BigDecimal price;
 	int numbersInStock;
 	
+	@OneToMany
+	@JoinColumn(name="productId")
+	Set<OrderDetail>orderDetails; 
 	
+	public Set<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(Set<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 	public Long getProductId() {
 		return productId;
 	}
@@ -49,5 +61,10 @@ public class Product {
 	}
 	public void setNumbersInStock(int numbersInStock) {
 		this.numbersInStock = numbersInStock;
+	}
+	
+	@Override
+	public String toString(){
+		return getName();
 	}
 }

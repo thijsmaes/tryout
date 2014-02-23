@@ -1,21 +1,34 @@
 package be.groept.ie3.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Eshop")
 public class Eshop {
-	// TODO: this class is not complete, only here to get you started
-	// complete the properties following the IE3 requiremetns
-
+	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long eshopId;
 	private String name;
 	private Address address;
+	private Set<Order> orders;
+	
+	@OneToMany
+	@JoinColumn(name="eshopId")
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 
 	public Address getAddress() {
 		return address;
@@ -25,12 +38,12 @@ public class Eshop {
 		this.address = address;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getEshopId() {
+		return eshopId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long eshopId) {
+		this.eshopId = eshopId;
 	}
 
 	public String getName() {

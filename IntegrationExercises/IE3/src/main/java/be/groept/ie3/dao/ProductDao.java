@@ -1,6 +1,12 @@
 package be.groept.ie3.dao;
 
-public interface ProductDao {
+import java.util.List;
 
-	// TODO complete me
+import org.hibernate.SessionFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public interface ProductDao {
+	
+	
+	
 }
