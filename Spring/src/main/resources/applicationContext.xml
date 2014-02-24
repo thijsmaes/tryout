@@ -13,4 +13,14 @@
 	
 	<!-- Configure your beans below this comment -->
 	
+	<bean id="serviceFacade" class="be.groept.spring.facade.ServiceFacadeImpl" autowire="byType">
+	<!--  <constructor-arg ref=""/>  -->
+	</bean>
+	<!-- <bean id="anotherServiceFacade" class="be.groept.spring.facade.AnotherServiceFacadeImpl" autowire="byType">
+	<property name="orderRepository" ref="be.groept.spring.repository.OrderRepositoryImpl"/>
+	</bean>  -->
+	<bean id="yetAnotherServiceFacade" class="be.groept.spring.facade.YetAnotherServiceFacadeImpl" autowire="byType">
+	<!--  <constructor-arg ref=""/>  -->
+	</bean>
+	<bean id="orderRepository" class="be.groept.spring.repository.OrderRepositoryImpl"></bean>
 </beans>

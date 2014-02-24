@@ -8,6 +8,7 @@ import static org.mockito.Mockito.eq;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.mockito.Mockito.mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +41,9 @@ public class MockTestSpringInjection extends AbstractTestNGSpringContextTests {
 	}
 
 	public void testHappyFlow() throws ReceptionNotOkException {
+		
+		WebserviceClient webserviceClient = mock(WebserviceClient.class);
+		
 		when(webserviceClient.sendResult(any(ProcessResult.class), any(Date.class))).thenReturn(
 				new WebserviceResult(WebserviceResultStatus.OK));
 

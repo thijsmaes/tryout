@@ -40,45 +40,52 @@ public class OrderServiceImpl implements OrderService, Serializable {
 		return productNames;
 	}
 
+	public List<Order> searchOrders(){
+		List<Order> orders = map.get(FIXED_CUSTOMER);
+		return orders;
+	}
+	
 	public List<Order> searchOrders(OrderSearchCriteria orderSearchCriteria) {
 		List<Order> matchedOrders = new ArrayList<Order>();
 		List<Order> orders = map.get(FIXED_CUSTOMER);
 
-		for (Order order : orders) {
-			boolean shouldAdd = false;
+//		for (Order order : orders) {
+//			boolean shouldAdd = true;
+//
+//			if (orderSearchCriteria.hasPriceRange()) {
+//				if (orderSearchCriteria.isWithinRange(order
+//						.getTotalOrderPrice())) {
+//					shouldAdd = true;
+//				}
+//			}
+//
+//			if (!shouldAdd
+//					&& StringUtils.isNotBlank(orderSearchCriteria
+//							.getProductName())) {
+//				for (Product product : order.getProducts()) {
+//					if (product
+//							.getProductName()
+//							.toLowerCase()
+//							.startsWith(
+//									orderSearchCriteria.getProductName()
+//											.toLowerCase())) {
+//						shouldAdd = true;
+//						break;
+//					}
+//				}
+//			}
+//
+//			// TODO add code for filtering orders based on the criteria
+//			// 'numberOfProducts' and 'delivered'
+//
+//			if (shouldAdd) {
+//				matchedOrders.add(order);
+//			}
+//		}
 
-			if (orderSearchCriteria.hasPriceRange()) {
-				if (orderSearchCriteria.isWithinRange(order
-						.getTotalOrderPrice())) {
-					shouldAdd = true;
-				}
-			}
-
-			if (!shouldAdd
-					&& StringUtils.isNotBlank(orderSearchCriteria
-							.getProductName())) {
-				for (Product product : order.getProducts()) {
-					if (product
-							.getProductName()
-							.toLowerCase()
-							.startsWith(
-									orderSearchCriteria.getProductName()
-											.toLowerCase())) {
-						shouldAdd = true;
-						break;
-					}
-				}
-			}
-
-			// TODO add code for filtering orders based on the criteria
-			// 'numberOfProducts' and 'delivered'
-
-			if (shouldAdd) {
-				matchedOrders.add(order);
-			}
-		}
-
-		return matchedOrders;
+//		return matchedOrders;
+		
+		return orders;
 	}
 
 	public List<Order> getAllOrdersForCustomer() {
@@ -94,10 +101,10 @@ public class OrderServiceImpl implements OrderService, Serializable {
 				"Samsung UN60F6300", new BigDecimal("1200.33"));
 		Product smartphone = new Product(2L, "P2", "Samsung galaxy S4",
 				"Samsung android smartphone", new BigDecimal("500.50"));
-		Product tabled = new Product(3L, "P3", "HP Elitepad",
+		Product tablet = new Product(3L, "P3", "HP Elitepad",
 				"HP Elitepad 900", new BigDecimal("999.99"));
 		Order order = new Order(1L, "Order1", FIXED_CUSTOMER, true, 3, lcdTv,
-				smartphone, tabled);
+				smartphone, tablet);
 		orders.add(order);
 
 		// Order2
