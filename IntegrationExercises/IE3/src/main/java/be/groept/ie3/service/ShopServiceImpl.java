@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import be.groept.ie3.dao.CustomerDao;
 import be.groept.ie3.dao.ShopDao;
 import be.groept.ie3.entities.Customer;
 import be.groept.ie3.entities.Eshop;
@@ -20,6 +21,10 @@ public class ShopServiceImpl implements ShopService {
 	@Autowired
 	private ShopDao shopDao;
 
+	@Autowired
+	private CustomerDao customerDao;
+	
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Eshop> listEshops() {
@@ -34,8 +39,8 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public Customer loadCustomer(String username) {
-		// TODO complete me
-		return null;
+		Customer customer = (Customer) customerDao.findCustomers(null, null, username);
+		return customer;
 	}
 
 	@Override

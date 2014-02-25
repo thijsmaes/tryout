@@ -10,14 +10,13 @@ import be.groept.util.InitialDataSetup;
 public class SpringRunner {
 
 	
-//	private static final SessionFactory sessionFactory=SessionFactory;
 	private static InitialDataSetup init;
 	
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 				"/applicationContext.xml");
 
-//		init=new InitialDataSetup(new TransactionTemplate(), sessionFactory);
+
 		
 		EshopApplicationController controller = (EshopApplicationController) applicationContext
 				.getBean("eshopApplicationController");

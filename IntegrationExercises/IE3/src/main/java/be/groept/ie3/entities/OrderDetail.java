@@ -15,7 +15,7 @@ public class OrderDetail {
 
 	@Id
 	@GeneratedValue
-	private Long orderDetailsID;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="orderId")
@@ -28,11 +28,11 @@ public class OrderDetail {
 	BigDecimal amount;
 	BigDecimal total;
 	
-	public Long getOrderDetailsID() {
-		return orderDetailsID;
+	public Long getId() {
+		return id;
 	}
-	public void setOrderDetailsID(Long orderDetailsID) {
-		this.orderDetailsID = orderDetailsID;
+	public void setId(Long orderDetailsID) {
+		this.id = orderDetailsID;
 	}
 	public Order getOrder() {
 		return order;

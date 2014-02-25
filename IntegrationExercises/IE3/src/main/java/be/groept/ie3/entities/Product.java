@@ -16,7 +16,7 @@ public class Product {
 
 	@Id
 	@GeneratedValue
-	Long productId;
+	Long id;
 	String shortName;
 	String name;
 	BigDecimal price;
@@ -32,11 +32,11 @@ public class Product {
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-	public Long getProductId() {
-		return productId;
+	public Long getId() {
+		return id;
 	}
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	public void setId(Long productId) {
+		this.id = productId;
 	}
 	public String getShortName() {
 		return shortName;

@@ -28,9 +28,10 @@
 		</property>
 		<property name="packagesToScan" value="be.groept.hibernate.ie3.entities"/>
 		<property name="mappingLocations">
-			<list>
+			 <list>
 					<value>classpath:mappings/Eshop.hbm.xml</value>
-			</list>
-		</property>
+			</list>  
+		</property> 
 	</bean>
+	
 </beans>

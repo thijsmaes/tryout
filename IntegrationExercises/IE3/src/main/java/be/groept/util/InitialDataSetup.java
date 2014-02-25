@@ -3,6 +3,7 @@ package be.groept.util;
 import java.math.BigDecimal;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -17,6 +18,7 @@ import be.groept.ie3.entities.Product;
 public class InitialDataSetup {
 
 	private TransactionTemplate transactionTemplate;
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public InitialDataSetup(TransactionTemplate transactionTemplate,
@@ -41,6 +43,7 @@ public class InitialDataSetup {
 					Eshop eshop = new Eshop();
 					eshop.setName("tacoteo");
 					eshop.setAddress(address1);
+					sessionFactory.getCurrentSession().save(address1);
 					sessionFactory.getCurrentSession().save(eshop);
 					
 					Customer a= new Customer();

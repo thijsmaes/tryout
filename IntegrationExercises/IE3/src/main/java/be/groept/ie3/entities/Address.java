@@ -11,17 +11,17 @@ public class Address {
 	
 	@Id
 	@GeneratedValue
-	Long adressId;
+	Long id;
 	
 	private String country, municipality, postalCode, street, box;
 	private int houseNumber;
 	
 	
-	public Long getAdressId() {
-		return adressId;
+	public Long getId() {
+		return id;
 	}
-	public void setAdressId(Long adressId) {
-		this.adressId = adressId;
+	public void setId(Long adressId) {
+		this.id = adressId;
 	}
 	public String getCountry() {
 		return country;
@@ -59,5 +59,4 @@ public class Address {
 	public void setHouseNumber(int houseNumber) {
 		this.houseNumber = houseNumber;
 	}
-
 }

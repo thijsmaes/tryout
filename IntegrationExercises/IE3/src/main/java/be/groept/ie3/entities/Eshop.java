@@ -15,7 +15,7 @@ public class Eshop {
 	
 	@Id
 	@GeneratedValue
-	private Long eshopId;
+	private Long id;
 	private String name;
 	private Address address;
 	private Set<Order> orders;
@@ -38,12 +38,12 @@ public class Eshop {
 		this.address = address;
 	}
 
-	public Long getEshopId() {
-		return eshopId;
+	public Long getId() {
+		return id;
 	}
 
 	public void setId(Long eshopId) {
-		this.eshopId = eshopId;
+		this.id = eshopId;
 	}
 
 	public String getName() {
@@ -52,5 +52,9 @@ public class Eshop {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setEshopId(Long eshopId) {
+		this.id = eshopId;
 	}
 }

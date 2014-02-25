@@ -18,7 +18,7 @@ public class Order {
 	
 	@Id
 	@GeneratedValue
-	private Long orderID;
+	private Long id;
 	
 	String paymentMethod;
 	BigDecimal orderTotal;
@@ -43,12 +43,12 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public Long getOrderID() {
-		return orderID;
+	public Long getId() {
+		return id;
 	}
 
-	public void setOrderID(Long orderID) {
-		this.orderID = orderID;
+	public void setId(Long orderID) {
+		this.id = orderID;
 	}
 
 	public String getPaymentMethod() {

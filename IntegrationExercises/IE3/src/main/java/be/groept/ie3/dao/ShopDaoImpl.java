@@ -14,6 +14,7 @@ public class ShopDaoImpl implements ShopDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Eshop> listAllShops() {
 		return sessionFactory.getCurrentSession().createQuery("from Eshop").list();

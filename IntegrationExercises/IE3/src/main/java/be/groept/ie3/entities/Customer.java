@@ -15,7 +15,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue
-	Long customerId;
+	Long id;
 	
 	@OneToMany
 	@JoinColumn(name="orderId")
@@ -33,12 +33,12 @@ public class Customer {
 		this.orders = orders;
 	}
 
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setId(Long customerId) {
+		this.id = customerId;
 	}
 	
-	public Long getCustomerId(){
-		return customerId;
+	public Long getId(){
+		return id;
 	}
 	
 	public String getUserName() {
